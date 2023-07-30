@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://i3x3q6h4iwrr"]
+
+[ext_resource type="Texture2D" uid="uid://b30cvr3ldcg0c" path="res://ggspr/barric.png" id="1_4duy4"]
+[ext_resource type="PackedScene" uid="uid://cl11sqvkfkfmv" path="res://obj/player.tscn" id="2_ytc88"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jaqu6"]
+texture = ExtResource("1_4duy4")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 2.25, 16, 2, 16, 16, -16, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.375, -9.5, 10.625, -10.25, 11.125, 13.5, -10.625, 13.25)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.375, -9.5, 10.625, -10.25, 11.125, 13.5, -10.625, 13.25)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -5.5, 16, -5.25, 16, 16, -16, 16)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.375, -9.5, 10.625, -10.25, 11.125, 13.5, -10.625, 13.25)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.375, -9.5, 10.625, -10.25, 11.125, 13.5, -10.625, 13.25)
+
+[sub_resource type="TileSet" id="TileSet_bo0ct"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_jaqu6")
+
+[node name="world" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_bo0ct")
+cell_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(327688, 131072, 0, 262155, 65536, 0, 196622, 0, 1, 196629, 131072, 0, 196631, 0, 0, 262168, 65536, 1, 327705, 131072, 1, 589851, 65536, 0, 917528, 131072, 1, 983064, 0, 0, 983063, 0, 1, 983061, 65536, 1, 983058, 131072, 1, 983057, 0, 0, 983055, 131072, 1, 983053, 65536, 1, 983052, 0, 0, 917515, 131072, 1, 917514, 0, 1, 983050, 131072, 0, 851972, 65536, 0, 786435, 0, 0, 786434, 65536, 0, 655370, 0, 0, 589835, 131072, 0, 589836, 0, 0, 589837, 0, 1, 458769, 131072, 1, 393240, 65536, 1, 1179653, 0, 0, 1310727, 65536, 0, 1310731, 131072, 1)
+
+[node name="player" parent="." instance=ExtResource("2_ytc88")]
+position = Vector2(593, 349)

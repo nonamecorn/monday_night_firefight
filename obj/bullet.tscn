@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://6kxprko8v0nh"]
+
+[ext_resource type="Texture2D" uid="uid://df3v0lxl7442d" path="res://spr/bulletspr.png" id="1_2cm7p"]
+
+[sub_resource type="GDScript" id="GDScript_8h2nt"]
+script/source = "extends CharacterBody2D
+
+var speed = 350
+var move_vec : Vector2
+var mod_vec : Vector2
+
+func _ready():
+	init()
+
+func init():
+	move_vec = Vector2.RIGHT
+	move_vec = move_vec.rotated(global_rotation)
+
+
+func hit_body(body: PhysicsBody2D):
+	if is_instance_valid(body) and body.has_method(\"hurt\"):
+		deal_damage(body)
+
+func _physics_process(delta):
+	var coll = move_and_collide(move_vec * speed * delta)
+	if coll:
+		destroy_bullet()
+		if coll.get_collider().has_method(\"hurt\"):
+			deal_damage(coll.get_collider())
+		else:
+			destroy_bullet()
+
+func deal_damage(body):
+	body.hurt()
+	destroy_bullet()
+
+func destroy_bullet():
+	queue_free()
+
+
+
+func _on_timer_timeout():
+	destroy_bullet()
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k4ln7"]
+radius = 5.0
+height = 14.0
+
+[node name="bullet" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 5
+script = SubResource("GDScript_8h2nt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k4ln7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2cm7p")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

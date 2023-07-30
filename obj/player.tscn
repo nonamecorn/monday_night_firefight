@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl11sqvkfkfmv"]
+
+[ext_resource type="Script" path="res://obj/player.gd" id="1_d8oml"]
+[ext_resource type="Texture2D" uid="uid://dfifi1lm6bpbn" path="res://ggspr/mc.png" id="2_kjv55"]
+[ext_resource type="Script" path="res://obj/hand.gd" id="3_dwyqs"]
+[ext_resource type="PackedScene" uid="uid://dtk150slfpjcg" path="res://guns/smg.tscn" id="4_c7d6f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jcv6k"]
+radius = 8.0
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_d8oml")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kjv55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["player"]]
+shape = SubResource("CapsuleShape2D_jcv6k")
+
+[node name="hand" type="Node2D" parent="."]
+script = ExtResource("3_dwyqs")
+
+[node name="SMG" parent="hand" instance=ExtResource("4_c7d6f")]
+
+[node name="reload" type="Timer" parent="hand"]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(2, 2)
+
+[connection signal="timeout" from="hand/reload" to="hand" method="_on_reload_timeout"]

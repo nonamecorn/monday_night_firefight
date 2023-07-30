@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqn8suvmx4sa7"]
+
+[ext_resource type="Script" path="res://others/connector.gd" id="1_nvudu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahveh"]
+size = Vector2(128, 54)
+
+[node name="connector" type="Marker2D"]
+script = ExtResource("1_nvudu")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -32)
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="wall" type="StaticBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/wall"]
+shape = SubResource("RectangleShape2D_ahveh")
+disabled = true
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+custom_minimum_size = Vector2(128, 54)
+offset_left = -64.0
+offset_top = -27.0
+offset_right = 64.0
+offset_bottom = 27.0
+color = Color(0.996078, 0.988235, 0.87451, 1)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb47g4ebx73de"]
+
+[ext_resource type="Texture2D" uid="uid://pxbvosac0jul" path="res://spr/bankaspr.png" id="1_1yfl3"]
+
+[node name="banka" type="Node2D"]
+
+[node name="new_spawn" type="Marker2D" parent="."]
+position = Vector2(10, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, -1)
+texture = ExtResource("1_1yfl3")
+vframes = 10
